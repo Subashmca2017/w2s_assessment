@@ -1,0 +1,31 @@
+{% extends "layout/layout.html" %}
+
+{% block layout %}
+
+<!--Login-->
+<div class="container py-5">
+    <h1>Login</h1>
+    <form action="/users/login/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input class="form-control" type="text" name="username" placeholder="username" required="1"/><br>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" placeholder="password" required="1"/><br>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+        <div>
+            <ul>
+                {% for message in messages %}
+                <br>
+                <li class="text text-{{message.tags}}">{{message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </form>
+    <p class="text-center">Don't have an account? <a href="/users/registration">Create an account</a>.</p>
+</div>
+
+{% endblock %}
